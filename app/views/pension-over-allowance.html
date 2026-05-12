@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Did your pension income exceed the Personal Allowance? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/pension-over-allowance-answer" method="post">
+
+      {{ govukRadios({
+        name: "pension-over-allowance",
+        fieldset: {
+          legend: {
+            text: "Was your total income from pensions and the State Pension more than £12,570?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "The Personal Allowance for the 2023 to 2024 tax year was £12,570. If your pension income was below this and it was your only income, you may not have any tax to pay."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['pension-over-allowance'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['pension-over-allowance'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

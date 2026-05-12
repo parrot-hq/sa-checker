@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  You do not need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "You do not need to send a Self Assessment tax return",
+      html: "for the 2023 to 2024 tax year"
+    }) }}
+
+    <p class="govuk-body govuk-!-margin-top-6">Based on your answers, you do not appear to meet the criteria that require you to send a Self Assessment tax return for this tax year.</p>
+
+    {{ govukInsetText({
+      html: 'If your circumstances change, or you realise you have income that was not covered in your answers, you should check again. It is your responsibility to tell HMRC if you need to pay tax.<br><br>This tool does not cover all circumstances. If you are a trustee, non-domiciled, a minister of religion, or lived or worked abroad during the tax year, <a class="govuk-link" href="https://www.gov.uk/self-assessment-tax-returns/who-must-send-a-tax-return">check the full HMRC guidance</a>.'
+    }) }}
+
+    <h2 class="govuk-heading-m">You may still choose to send a return</h2>
+
+    <p class="govuk-body">Even if you do not have to, you may want to send a return if you:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>want to claim tax relief on pension contributions, charitable donations or work expenses</li>
+      <li>want to prove you are self-employed, for example to claim tax-free childcare or Maternity Allowance</li>
+      <li>are not resident in the UK for tax purposes</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">If you previously sent a return</h2>
+
+    <p class="govuk-body">If HMRC has sent you a notice to complete a Self Assessment tax return, you must complete it even if you do not owe any tax. Contact HMRC to ask them to cancel the return if you believe you no longer need to file one.</p>
+
+    <ul class="govuk-list govuk-list--spaced">
+      <li><a href="https://www.gov.uk/contact-hmrc" class="govuk-link">Contact HMRC</a></li>
+      <li><a href="https://www.gov.uk/self-assessment-tax-returns" class="govuk-link">Find out more about Self Assessment tax returns</a></li>
+    </ul>
+
+    <p class="govuk-body"><a href="/start" class="govuk-link">Check again with different answers</a></p>
+
+  </div>
+</div>
+{% endblock %}

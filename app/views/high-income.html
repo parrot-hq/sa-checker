@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Did your income from employment exceed £100,000? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/high-income-answer" method="post">
+
+      {{ govukRadios({
+        name: "high-income",
+        fieldset: {
+          legend: {
+            text: "Did your total income in the 2023 to 2024 tax year exceed £100,000?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "Include all income, not just from employment. This includes salary, bonuses, dividends, rental income and any other taxable income."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['high-income'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['high-income'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

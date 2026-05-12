@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Did you sell or dispose of assets? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/capital-gains-answer" method="post">
+
+      {{ govukRadios({
+        name: "capital-gains",
+        fieldset: {
+          legend: {
+            text: "In the 2023 to 2024 tax year, did you sell or dispose of assets that may be subject to Capital Gains Tax?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "This includes selling shares, a second property, cryptocurrency or other investments. It does not include your main home unless you let it out, used it for business or it's very large."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['capital-gains'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['capital-gains'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "What counts as disposing of an asset?",
+        text: "Disposing of an asset includes selling it, giving it away, swapping it, receiving compensation or insurance for it, or transferring ownership in any other way."
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

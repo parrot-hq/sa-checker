@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  You need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "You need to send a Self Assessment tax return",
+      html: "for the 2023 to 2024 tax year"
+    }) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">Why you need to send a return</h2>
+
+    <p class="govuk-body">Based on your answers, one or more of the following applies to you:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      {% if data['self-employed'] === 'yes' and data['self-employed-income'] === 'yes' %}
+        <li>you were self-employed and your income exceeded £1,000</li>
+      {% endif %}
+      {% if data['partnership'] === 'yes' %}
+        <li>you were a partner in a business partnership</li>
+      {% endif %}
+      {% if data['high-income'] === 'yes' %}
+        <li>your total income exceeded £100,000</li>
+      {% endif %}
+      {% if data['untaxed-income'] and 'rental' in data['untaxed-income'] %}
+        <li>you received rental income from property</li>
+      {% endif %}
+      {% if data['untaxed-income'] and 'savings' in data['untaxed-income'] %}
+        <li>you received interest from savings or investments that was not already taxed</li>
+      {% endif %}
+      {% if data['untaxed-income'] and 'dividends' in data['untaxed-income'] %}
+        <li>you received dividends from shares</li>
+      {% endif %}
+      {% if data['untaxed-income'] and 'tips' in data['untaxed-income'] %}
+        <li>you received tips or commission not included in your pay</li>
+      {% endif %}
+      {% if data['capital-gains'] === 'yes' %}
+        <li>you sold or disposed of assets that may be subject to Capital Gains Tax</li>
+      {% endif %}
+      {% if data['foreign-income'] === 'yes' %}
+        <li>you had income from outside the UK</li>
+      {% endif %}
+      {% if data['child-benefit'] === 'yes' and data['child-benefit-income'] === 'yes' %}
+        <li>you or your partner received Child Benefit and one of you had income over £50,000</li>
+      {% endif %}
+      {% if data['pension-over-allowance'] === 'yes' %}
+        <li>your pension income exceeded the Personal Allowance</li>
+      {% endif %}
+    </ul>
+
+    <h2 class="govuk-heading-m">What to do next</h2>
+
+    <p class="govuk-body">The deadline for sending your 2023 to 2024 tax return online is <strong>31 January 2025</strong>.</p>
+
+    {{ govukWarningText({
+      text: "If you miss the deadline, you may be charged a late filing penalty of £100.",
+      iconFallbackText: "Warning"
+    }) }}
+
+    <p class="govuk-body">If you have not already registered for Self Assessment, you must do this first. It can take up to 20 working days to receive your Unique Taxpayer Reference (UTR).</p>
+
+    <ul class="govuk-list govuk-list--spaced">
+      <li><a href="https://www.gov.uk/register-for-self-assessment" class="govuk-link">Register for Self Assessment</a> if this is your first return</li>
+      <li><a href="https://www.gov.uk/log-in-file-self-assessment-tax-return" class="govuk-link">Sign in and file your return</a> if you are already registered</li>
+      <li><a href="https://www.gov.uk/self-assessment-tax-returns" class="govuk-link">Find out more about Self Assessment tax returns</a></li>
+    </ul>
+
+    <p class="govuk-body"><a href="/start" class="govuk-link">Check again with different answers</a></p>
+
+  </div>
+</div>
+{% endblock %}

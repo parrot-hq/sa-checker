@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Did your self-employment income exceed £1,000? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/self-employed-income-answer" method="post">
+
+      {{ govukRadios({
+        name: "self-employed-income",
+        fieldset: {
+          legend: {
+            text: "Did your self-employment income exceed £1,000 before deducting expenses?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "This is your gross trading income - the total amount you received before taking off any business expenses."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, it was more than £1,000",
+            checked: data['self-employed-income'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No, it was £1,000 or less",
+            checked: data['self-employed-income'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "What counts as self-employment income?",
+        text: "Self-employment income includes any money you received from providing goods or services as a sole trader. This includes one-off payments, regular clients and income from online platforms such as Etsy, Deliveroo or Airbnb."
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

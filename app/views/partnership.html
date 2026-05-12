@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Were you a partner in a business partnership? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/partnership-answer" method="post">
+
+      {{ govukRadios({
+        name: "partnership",
+        fieldset: {
+          legend: {
+            text: "In the 2023 to 2024 tax year, were you a partner in a business partnership?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "A business partnership is when two or more people run a business together and share responsibility for it."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['partnership'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['partnership'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

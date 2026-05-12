@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Were you employed by a company or organisation? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/employment-answer" method="post">
+
+      {{ govukRadios({
+        name: "employment",
+        fieldset: {
+          legend: {
+            text: "In the 2023 to 2024 tax year, were you employed by a company or organisation?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "This includes full-time, part-time or casual employment where your employer deducted tax through PAYE."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['employment'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['employment'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

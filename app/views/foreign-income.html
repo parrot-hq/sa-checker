@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Did you have income from abroad? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/foreign-income-answer" method="post">
+
+      {{ govukRadios({
+        name: "foreign-income",
+        fieldset: {
+          legend: {
+            text: "In the 2023 to 2024 tax year, did you have income from outside the UK?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "This includes foreign employment income, a pension paid from abroad, income from overseas property, or any other money received from outside the UK."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['foreign-income'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['foreign-income'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

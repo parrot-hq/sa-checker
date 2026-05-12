@@ -1,5 +1,5 @@
 {
-  "serviceName": "Service name goes here",
+  "serviceName": "Check if you need to send a Self Assessment tax return",
   "useServiceNavigation": true,
   "plugins": {
     "govuk-frontend": {

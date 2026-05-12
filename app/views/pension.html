@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Did you receive income from a pension? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/pension-answer" method="post">
+
+      {{ govukRadios({
+        name: "pension",
+        fieldset: {
+          legend: {
+            text: "In the 2023 to 2024 tax year, did you receive income from a pension?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "This includes a private or workplace pension, but not the State Pension."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['pension'] === 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['pension'] === 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

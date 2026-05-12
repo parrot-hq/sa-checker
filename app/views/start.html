@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Check if you need to send a Self Assessment tax return</h1>
+
+    <p class="govuk-body">Use this service to find out if you need to complete a Self Assessment tax return for the 2023 to 2024 tax year (6 April 2023 to 5 April 2024).</p>
+
+    <p class="govuk-body">You may need to send a return if you:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>were self-employed as a sole trader and earned more than £1,000</li>
+      <li>were a partner in a business partnership</li>
+      <li>had income from savings, investments or dividends</li>
+      <li>had a total taxable income of more than £100,000</li>
+      <li>received Child Benefit and you or your partner had income over £50,000</li>
+      <li>had income from abroad</li>
+      <li>sold or disposed of assets and need to pay Capital Gains Tax</li>
+    </ul>
+
+    <p class="govuk-body">This tool takes around 5 minutes to complete.</p>
+
+    {{ govukButton({
+      text: "Start now",
+      href: "/employment",
+      isStartButton: true
+    }) }}
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+
+    <p class="govuk-body">You'll need details of your income for the 2023 to 2024 tax year, including any income from self-employment, savings, investments or abroad.</p>
+
+    <p class="govuk-body">If you already know you need to send a Self Assessment return, you can <a href="https://www.gov.uk/log-in-file-self-assessment-tax-return" class="govuk-link">sign in to your HMRC online account</a> to file it.</p>
+
+  </div>
+</div>
+{% endblock %}

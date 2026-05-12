@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Did you have untaxed income? - Check if you need to send a Self Assessment tax return - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <form action="/untaxed-income-answer" method="post">
+
+      {{ govukCheckboxes({
+        name: "untaxed-income",
+        fieldset: {
+          legend: {
+            text: "Did you have any of the following types of income in the 2023 to 2024 tax year?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        },
+        hint: {
+          text: "Select all that apply."
+        },
+        items: [
+          {
+            value: "rental",
+            text: "Income from renting out property",
+            checked: data['untaxed-income'] and 'rental' in data['untaxed-income']
+          },
+          {
+            value: "savings",
+            text: "Interest from savings or investments not already taxed",
+            checked: data['untaxed-income'] and 'savings' in data['untaxed-income']
+          },
+          {
+            value: "dividends",
+            text: "Dividends from shares",
+            checked: data['untaxed-income'] and 'dividends' in data['untaxed-income']
+          },
+          {
+            value: "tips",
+            text: "Tips or commission not included in your pay",
+            checked: data['untaxed-income'] and 'tips' in data['untaxed-income']
+          },
+          {
+            divider: "or"
+          },
+          {
+            value: "none",
+            text: "None of the above",
+            behaviour: "exclusive",
+            checked: data['untaxed-income'] and 'none' in data['untaxed-income']
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
